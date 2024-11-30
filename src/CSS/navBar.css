@@ -12,7 +12,7 @@ a {
   margin-bottom: 40px;
 }
 .navbar .logo a {
-  font-size: 2rem;
+  font-size: 3.2rem;
   font-weight: bold;
   color: #333;
   text-decoration: none;
@@ -28,7 +28,7 @@ a {
 }
 .navbar .nav-links a {
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.76rem;
   color: #555;
   transition: color 0.3s;
 }
@@ -43,7 +43,7 @@ a {
 }
 .navbar .nav-actions .search-bar {
   padding: 5px 10px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   border: 1px solid #ddd;
   border-radius: 10px;
   width: 60%;
@@ -54,7 +54,7 @@ a {
   outline: none;
 }
 .navbar .nav-actions .cart {
-  font-size: 1.2rem;
+  font-size: 1.92rem;
   background-color: #ff6347;
   color: #555;
   text-decoration: none;
@@ -84,7 +84,7 @@ a {
     justify-content: space-around;
   }
   .navbar .nav-links a {
-    font-size: 0.9rem;
+    font-size: 1.44rem;
   }
   .navbar .nav-actions {
     display: flex;
@@ -97,10 +97,10 @@ a {
   }
   .navbar .nav-actions .cart {
     width: 19%;
-    font-size: 0.9rem;
+    font-size: 1.44rem;
   }
   .navbar .logo a {
-    font-size: 1.4rem;
+    font-size: 2.24rem;
   }
 }
 @media (max-width: 478px) {
@@ -119,7 +119,7 @@ a {
     justify-content: space-around;
   }
   .navbar .nav-links a {
-    font-size: 0.7rem;
+    font-size: 1.12rem;
   }
   .navbar .nav-actions {
     display: flex;
@@ -132,11 +132,11 @@ a {
   }
   .navbar .nav-actions .cart {
     width: 19%;
-    font-size: 0.7rem;
+    font-size: 1.12rem;
   }
   .navbar .logo a {
-    font-size: 0.9rem;
+    font-size: 1.44rem;
   }
 }
 
-/*# sourceMappingURL=navBar.css.map */
+/*# sourceMappingURL=Navbar.css.map */

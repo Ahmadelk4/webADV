@@ -1,24 +1,20 @@
-import React from "react";
-import "./CSS/Banner.css";
-import Banner from "./components/Banner";
-import "./Css/navBar.css";
-import Nav from "./components/nav";
-import "./CSS/PremiumShades.css";
-import PremiumShades from "./components/PremiumShades";
-import "./CSS/App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/HomePage";
+import ShopPage from "./pages/ShopPage";
+import "./CSS/navBar.css";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Nav />
-      <Banner />
-      <br />
-      <br />
-      <br />
-
-      <PremiumShades />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<ShopPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

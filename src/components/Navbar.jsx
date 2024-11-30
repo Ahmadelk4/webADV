@@ -1,19 +1,18 @@
-import React from "react";
+import "../CSS/Navbar.css";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <a href="/">FashionShop</a>
+        <Link to="/">Zone Outfit</Link>
       </div>
 
       <div className="nav-links">
-        <a href="/men">Home</a>
-
-        <a href="/women">New</a>
-
-        <a href="/kids">Trend</a>
-
-        <a href="/sale">Sale</a>
+        <Link to="/shop">Shop</Link>
+        <Link to="/women">New</Link>
+        <Link to="/kids">Trend</Link>
+        <Link to="/sale">Sale</Link>
       </div>
 
       <div className="nav-actions">
@@ -22,9 +21,10 @@ const Navbar = () => {
           className="search-bar"
           placeholder="Search for items..."
         />
-        <a href="/cart" className="cart">
+
+        <Link to="/cart" className="cart">
           Cart 🛒
-        </a>
+        </Link>
       </div>
     </nav>
   );

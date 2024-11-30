@@ -1,4 +1,4 @@
-import React from "react";
+import "../CSS/Banner.css";
 import model from "../assets/model3.png";
 
 function Banner() {

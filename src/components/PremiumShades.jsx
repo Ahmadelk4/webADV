@@ -1,13 +1,12 @@
-import React from "react";
-
+import "../CSS/PremiumShades.css";
 import model from "../assets/model3.png";
 
 function PremiumShades() {
   const shades = [
-    { title: "Fashion", link: "#", image: model },
-    { title: "Fashion", link: "#", image: model },
-    { title: "Fashion", link: "#", image: model },
-    { title: "Fashion", link: "#", image: model },
+    { title: "Men", link: "#", image: model },
+    { title: "Women", link: "#", image: model },
+    { title: "Kids", link: "#", image: model },
+    { title: "Unisex", link: "#", image: model },
   ];
 
   return (
