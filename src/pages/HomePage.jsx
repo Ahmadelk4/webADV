@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import "../CSS/Banner.css";
 import "../CSS/PremiumShades.css";
 import { Link } from "react-router-dom";
+import Shop from "./ShopPage";
 
 export default function HomePage() {
   const shades = [
@@ -11,10 +12,7 @@ export default function HomePage() {
     { id: 2, age_gender: "Boy", link: "#", image: model },
     { id: 3, age_gender: "Girls", link: "#", image: model },
   ];
-
-  // const handleFiltering = (age_gender) => {
-  //   setSharedData(age_gender);
-  // };
+  // const age_gender = [];
 
   return (
     <div className="App">
@@ -37,8 +35,6 @@ export default function HomePage() {
         </div>
       </section>
       <br />
-      <br />
-      <br />
 
       <section className="premium-shades">
         <h2>Premium Shades</h2>
@@ -49,8 +45,12 @@ export default function HomePage() {
                 <div className="item-content">
                   <div className="item-txt">
                     <h2>{shade.age_gender}</h2>
-
-                    <a> Go now</a>
+                    <Link
+                      className="filter"
+                      to={`/shop?age_gender=${shade.age_gender}`}
+                    >
+                      Go now
+                    </Link>
                   </div>
 
                   <img
