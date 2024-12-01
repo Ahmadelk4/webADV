@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
 import "./CSS/navBar.css";
+import ProductPage from "./pages/ProductPage";
 
 const App = () => {
   return (
