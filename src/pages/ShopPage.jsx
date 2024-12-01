@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import model from "../assets/model3.png";
 import ProductList from "../components/ProductList";
 import "../CSS/shopPage.css";
@@ -8,7 +9,7 @@ export default function Home() {
     {
       id: 1,
       name: "z.n.e full zip hoodie",
-      category: "His",
+      gender: "His",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,
@@ -19,7 +20,7 @@ export default function Home() {
     {
       id: 2,
       name: "neuclassics track top",
-      category: "Her",
+      gender: "Her",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,
@@ -30,7 +31,7 @@ export default function Home() {
     {
       id: 3,
       name: "z.n.e full zip hoodie",
-      category: "His",
+      gender: "His",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,
@@ -41,7 +42,7 @@ export default function Home() {
     {
       id: 4,
       name: "neuclassics track top",
-      category: "Her",
+      gender: "Her",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,
@@ -52,7 +53,7 @@ export default function Home() {
     {
       id: 5,
       name: "z.n.e full zip hoodie",
-      category: "His",
+      gender: "His",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,
@@ -63,7 +64,7 @@ export default function Home() {
     {
       id: 6,
       name: "neuclassics track top",
-      category: "Her",
+      gender: "Her",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,
@@ -74,7 +75,7 @@ export default function Home() {
     {
       id: 7,
       name: "z.n.e full zip hoodie",
-      category: "His",
+      gender: "His",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,
@@ -85,7 +86,7 @@ export default function Home() {
     {
       id: 8,
       name: "neuclassics track top",
-      category: "Her",
+      gender: "Her",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, possimus!",
       price: 20,

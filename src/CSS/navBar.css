@@ -11,11 +11,9 @@ a {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
 }
-.navbar .logo a {
-  font-size: 3.2rem;
-  font-weight: bold;
-  color: #333;
-  text-decoration: none;
+.navbar .logo img {
+  height: 25px;
+  width: auto;
 }
 .navbar .nav-links {
   display: flex;
@@ -99,8 +97,9 @@ a {
     width: 19%;
     font-size: 1.44rem;
   }
-  .navbar .logo a {
-    font-size: 2.24rem;
+  .navbar .logo img {
+    height: 15px;
+    width: auto;
   }
 }
 @media (max-width: 478px) {
@@ -139,4 +138,4 @@ a {
   }
 }
 
-/*# sourceMappingURL=Navbar.css.map */
+/*# sourceMappingURL=navBar.css.map */
