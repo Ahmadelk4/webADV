@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../CSS/Cart.css";
 import T_shirt from "../assets/T-shirt.png";
 import { useNavigate } from "react-router-dom";
+import Close from "../assets/Close.svg";
 
 const Cart = ({ isModal }) => {
   const [cartItems, setCartItems] = useState([
@@ -92,7 +93,7 @@ const Cart = ({ isModal }) => {
               className="remove-button"
               onClick={() => handleRemoveItem(item.id)}
             >
-              ❌
+              <img src={Close} alt="close symbol" />
             </button>
           </div>
         ))}
