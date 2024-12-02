@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/HomePage";
-import ShopPage from "./pages/ShopPage";
+import Home from "./pages/Home";
+import ShopPage from "./pages/Shop";
 import "./CSS/navBar.css";
-import ProductPage from "./pages/ProductPage";
+import ProductPage from "./pages/Product";
 import Signin_up from "./components/Signin_up";
 
 const App = () => {
