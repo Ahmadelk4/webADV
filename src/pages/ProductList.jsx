@@ -13,7 +13,7 @@ const initialProducts = [
     price: 20.0,
     discount: 0,
     clothesCategory: "Male",
-    quantity: 3,
+    status: "not delivered",
     availableSizes: "M",
     availableColor: "Green",
   },
@@ -25,7 +25,7 @@ const initialProducts = [
     price: 20.0,
     discount: 0,
     clothesCategory: "Male",
-    quantity: 0,
+    status: "delivered",
     availableSizes: "M",
     availableColor: "Green",
   },
@@ -37,7 +37,7 @@ const initialProducts = [
     price: 20.0,
     discount: 0,
     clothesCategory: "Male",
-    quantity: 5,
+    status: "delivered",
     availableSizes: "M",
     availableColor: "Green",
   },
@@ -49,7 +49,7 @@ const initialProducts = [
     price: 20.0,
     discount: 0,
     clothesCategory: "Male",
-    quantity: 0,
+    status: "not delivered",
     availableSizes: "M",
     availableColor: "Red",
   },
@@ -58,7 +58,6 @@ const initialProducts = [
 const ProductList = () => {
   const [products, setProducts] = useState(initialProducts);
 
-  // Handler to remove a product
   const handleDelete = (id) => {
     const updatedProducts = products.filter((product) => product.id !== id);
     setProducts(updatedProducts);
@@ -73,12 +72,13 @@ const ProductList = () => {
       <div className="product-container">
         <div className="product-headers">
           <span className="item">Item</span>
+          <span>ID</span>
           <span>Category</span>
           <span>Size</span>
           <span>Color</span>
           <span>Sale Price</span>
           <span>Discount</span>
-          <span>Quantity</span>
+          <span>status</span>
         </div>
 
         {products.map((product) => (
@@ -91,7 +91,9 @@ const ProductList = () => {
                 <p className="about">{product.about || "No description"}</p>
               </div>
             </div>
-
+            <span>
+              <span className="type">ID</span> {product.id}
+            </span>
             <span>
               <span className="type">Category</span> {product.clothesCategory}
             </span>
@@ -112,12 +114,13 @@ const ProductList = () => {
               {product.discount}%
             </span>
             <span
-              className={`quantity ${
-                product.quantity === 0 ? "out-of-stock" : "in-stock"
+              className={`status ${
+                product.status === "delivered" ? "delivered" : "not-delivered"
               }`}
             >
-              <span className="type"> Quantity</span> {product.quantity}
+              <span className="type"> status</span> {product.status}
             </span>
+
             <div className="buttons">
               <button className="button">
                 <img src={Edit} alt="edit" />

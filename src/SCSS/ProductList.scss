@@ -24,7 +24,7 @@
       font-size: 1.4rem;
       font-weight: bold;
       display: grid;
-      grid-template-columns: 1.7fr 0.8fr 0.5fr 0.5fr 1fr 0.8fr 0.8fr 0.6fr;
+      grid-template-columns: 1.7fr 0.3fr 0.8fr 0.5fr 0.5fr 1fr 0.8fr 0.8fr 0.6fr;
       color: #555;
       border-bottom: 2px solid #ddd;
       padding: 10px 0;
@@ -37,7 +37,7 @@
     .product-row {
       font-size: 1rem;
       display: grid;
-      grid-template-columns: 1.7fr 0.8fr 0.5fr 0.5fr 1fr 0.8fr 0.8fr 0.6fr;
+      grid-template-columns: 1.7fr 0.3fr 0.8fr 0.5fr 0.5fr 1fr 0.8fr 0.8fr 0.6fr;
       align-items: center;
       border-bottom: 1px solid #ddd;
       padding: 10px 0;
@@ -93,12 +93,12 @@
           border-radius: 8px;
         }
 
-        &.out-of-stock {
+        &.not-delivered {
           background-color: #f8d7da;
           color: #721c24;
         }
 
-        &.in-stock {
+        &.delivered {
           background-color: #d4edda;
           color: #155724;
         }
