@@ -44,7 +44,10 @@ a {
     align-items: center;
     gap: 10px;
     justify-content: right;
-
+    img {
+      object-fit: contain;
+      width: 3rem;
+    }
     .search-bar {
       padding: 5px 10px;
       font-size: 1.6rem;
@@ -121,18 +124,19 @@ a {
   }
 }
 
-@media (max-width: 478px) {
+@media (max-width: 640px) {
   .navbar {
     display: grid;
-    grid-template-columns: 20% 80%;
-    column-gap: 5%;
+    grid-template-rows: 45% 15% 15%;
     row-gap: 5%;
     padding: 0;
-    height: 80px;
+    height: 15rem;
+    align-items: center;
 
     .nav-links {
-      grid-row: 2 / 3;
-      grid-column: 1 / -1;
+      margin-top: 3rem;
+      grid-column: 1/3;
+      grid-row: 3/4;
       width: 100%;
       justify-content: space-around;
       a {
@@ -141,6 +145,7 @@ a {
     }
 
     .nav-actions {
+      grid-column: 1/3;
       display: flex;
       width: 93%;
       justify-content: right;
@@ -157,6 +162,7 @@ a {
     }
 
     .logo {
+      grid-column: 1/3;
       a {
         font-size: 1.44rem;
       }

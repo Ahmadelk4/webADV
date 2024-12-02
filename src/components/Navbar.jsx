@@ -1,6 +1,7 @@
 import "../CSS/Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import user from "../assets/User.svg";
 
 const Navbar = () => {
   return (
@@ -19,6 +20,10 @@ const Navbar = () => {
       </div>
 
       <div className="nav-actions">
+        <Link to="/Signin_up">
+          <img src={user} alt="user logo" />
+        </Link>
+
         <input
           type="text"
           className="search-bar"

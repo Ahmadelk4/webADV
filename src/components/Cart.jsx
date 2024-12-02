@@ -23,6 +23,24 @@ const Cart = ({ isModal }) => {
       quantity: 1,
       image: T_shirt,
     },
+    {
+      id: 1,
+      name: "Basic T-shirt",
+      color: "Grey",
+      size: "M",
+      price: 49,
+      quantity: 1,
+      image: T_shirt,
+    },
+    {
+      id: 1,
+      name: "Basic T-shirt",
+      color: "Grey",
+      size: "M",
+      price: 49,
+      quantity: 1,
+      image: T_shirt,
+    },
   ]);
 
   const navigate = useNavigate();
@@ -78,6 +96,13 @@ const Cart = ({ isModal }) => {
             </button>
           </div>
         ))}
+
+        <div className="total">
+          <p className="total-price">Total quantity: 3</p>
+
+          <p className="total-quantity">Total price: 98 USD</p>
+        </div>
+
         <div className="navbtn">
           <button className="btn" onClick={handleCloseModal}>
             &lt; Continue Shopping

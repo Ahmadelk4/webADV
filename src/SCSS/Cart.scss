@@ -26,15 +26,15 @@
     position: relative;
     background: #fff;
     z-index: 1000;
-    max-width: 800px;
-    max-height: 600px;
-    margin: 50px auto;
+    max-width: 80rem;
+    max-height: 80%;
+    margin: 5rem auto;
     overflow-y: auto;
     font-family: Arial, sans-serif;
 
     h1 {
       font-size: 2rem;
-      margin-bottom: 20px;
+      margin: 1rem 0 2rem 1rem;
       text-align: left;
     }
 
@@ -42,8 +42,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 0;
+      border-bottom: 0.1rem solid #ddd;
+      padding: 1.5rem 0;
 
       &:nth-child(even) {
         background-color: #f9f9f9;
@@ -53,10 +53,10 @@
         width: 50%;
 
         .product-image {
-          width: 100px;
-          height: 100px;
+          width: 10rem;
+          height: 10rem;
           object-fit: contain;
-          margin-right: 30px;
+          margin-right: 3rem;
         }
 
         .details {
@@ -65,7 +65,7 @@
 
           .product-name {
             font-size: 1.92rem;
-            margin: 5px 0;
+            margin: 0.5rem 0;
           }
           p {
             font-size: 1.6rem;
@@ -79,11 +79,11 @@
 
             input {
               width: 5rem;
-              padding: 5px;
-              margin-right: 10px;
+              padding: 0.5rem;
+              margin-right: 1rem;
               text-align: center;
-              border: 1px solid #ccc;
-              border-radius: 4px;
+              border: 0.1rem solid #ccc;
+              border-radius: 0.4rem;
             }
 
             span {
@@ -93,8 +93,7 @@
         }
       }
       .Totalprice {
-        font-size: 1.7rem;
-        font-weight: bold;
+        font-size: 1.4rem;
       }
       .remove-button {
         background-color: transparent;
@@ -110,7 +109,8 @@
     .navbtn {
       display: flex;
       justify-content: space-between;
-      margin-top: 2rem;
+      margin: 2rem;
+
       .btn {
         font-size: 1.8rem;
         color: black;
@@ -118,6 +118,7 @@
         border: none;
         border-radius: 0.4rem;
         padding: 0.5rem;
+
         cursor: pointer;
         &:first-child {
           background-color: #f0ad4e;
@@ -134,6 +135,47 @@
             color: white;
             scale: (1.1);
           }
+        }
+      }
+    }
+    .total {
+      display: grid;
+      grid-template-columns: 5.8% 18% 35.5% 25%;
+      max-width: 77.3rem;
+      margin-top: 1rem;
+      text-wrap: nowrap;
+
+      .total-price {
+        grid-column: 2/3;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .total-quantity {
+        grid-column: 4/5;
+        font-size: 1.7rem;
+        font-weight: bold;
+      }
+    }
+    @media (max-width: 810px) {
+      .cart-item {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        grid-template-rows: 10% 80% 10%;
+
+        .item-info {
+          width: 100%;
+          justify-content: center;
+          grid-row: 2/3;
+        }
+        .Totalprice {
+          text-align: center;
+          margin-left: 10rem;
+          grid-column: 1/2;
+          grid-row: 3/4;
+        }
+        .remove-button {
+          grid-row: 1/2;
+          grid-column: 2/-1;
         }
       }
     }
