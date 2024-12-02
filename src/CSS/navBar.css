@@ -51,7 +51,7 @@ a {
   border-color: #ff6347;
   outline: none;
 }
-.navbar .nav-actions .cart {
+.navbar .nav-actions .cart-button {
   font-size: 1.92rem;
   background-color: #ff6347;
   color: #555;
@@ -61,7 +61,7 @@ a {
   border-bottom-left-radius: 10px;
   transition: background-color 0.3s, color 0.3s;
 }
-.navbar .nav-actions .cart:hover {
+.navbar .nav-actions .cart-button:hover {
   background-color: black;
   color: #fff;
 }
@@ -93,12 +93,12 @@ a {
     width: 53%;
     height: 15px;
   }
-  .navbar .nav-actions .cart {
+  .navbar .nav-actions .cart-button {
     width: 19%;
     font-size: 1.44rem;
   }
   .navbar .logo img {
-    height: 15px;
+    height: 25px;
     width: auto;
   }
 }
@@ -129,7 +129,7 @@ a {
     width: 53%;
     height: 15px;
   }
-  .navbar .nav-actions .cart {
+  .navbar .nav-actions .cart-button {
     width: 19%;
     font-size: 1.12rem;
   }
@@ -138,4 +138,4 @@ a {
   }
 }
 
-/*# sourceMappingURL=navBar.css.map */
+/*# sourceMappingURL=Navbar.css.map */

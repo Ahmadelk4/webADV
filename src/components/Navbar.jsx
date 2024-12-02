@@ -25,7 +25,7 @@ const Navbar = () => {
           placeholder="Search for items..."
         />
 
-        <Link to="/cart" className="cart">
+        <Link to="/Cart" className="cart-button">
           Cart 🛒
         </Link>
       </div>
