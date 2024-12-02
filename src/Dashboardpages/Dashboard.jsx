@@ -1,5 +1,11 @@
-export default function Dashboard() {
+import { Link } from "react-router-dom";
 
-  return <div>
-  </div>
+export default function Dashboard() {
+  return (
+    <div>
+      <Link to="/Product-Create">Create product</Link>
+      <Link to="/ProductList">product table</Link>
+      <Link to="/DeliveryList">order table</Link>
+    </div>
+  );
 }
