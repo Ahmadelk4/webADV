@@ -362,7 +362,7 @@ export default function ShopPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const clothes_category = queryParams.get("clothesCategories");
-  console.log(clothes_category);
+  console.log(typeof clothes_category);
 
   return (
     <>

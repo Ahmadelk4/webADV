@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const shades = [
-    { id: 0, clothesCategories: "Men", link: "#", image: model },
-    { id: 1, clothesCategories: "Women", link: "#", image: model },
-    { id: 2, clothesCategories: "Boys", link: "#", image: model },
-    { id: 3, clothesCategories: "Girls", link: "#", image: model },
+    { id: 0, clothesCategories: "Men", image: model },
+    { id: 1, clothesCategories: "Women", image: model },
+    { id: 2, clothesCategories: "Boys", image: model },
+    { id: 3, clothesCategories: "Girls", image: model },
   ];
 
   return (

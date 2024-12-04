@@ -1,8 +1,7 @@
 // src/components/ProductCard.js
-import React from "react";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
+export default function ProductCard({ product }) {
   return (
     <div className="product-card">
       <div className="image-container">
@@ -34,6 +33,4 @@ const ProductCard = ({ product }) => {
       </div>
     </div>
   );
-};
-
-export default ProductCard;
+}
