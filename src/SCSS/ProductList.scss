@@ -1,10 +1,11 @@
 .products-list {
-  max-width: 1000px;
+  max-width: 80%;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 9rem;
 
   .product-header {
     text-align: center;
@@ -126,6 +127,8 @@
       grid-template-rows: auto;
       gap: 1rem;
 
+      // margin-top: 12.5rem;
+
       .product-headers {
         display: none;
       }
@@ -159,5 +162,11 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 901px) {
+  .product-container {
+    margin-top: 12.5rem;
   }
 }

@@ -14,9 +14,9 @@ const Navbar = () => {
 
       <div className="nav-links">
         <Link to="/shop">Shop</Link>
-        <Link to="/women">New</Link>
-        <Link to="/kids">Trend</Link>
-        <Link to="/sale">Sale</Link>
+        <Link>New</Link>
+        <Link>Trend</Link>
+        <Link>Sale</Link>
       </div>
 
       <div className="nav-actions">
@@ -31,7 +31,8 @@ const Navbar = () => {
         />
 
         <Link to="/Cart" className="cart-button">
-          Cart 🛒
+          <p>Cart</p>
+          <p>🛒</p>
         </Link>
       </div>
     </nav>

@@ -63,14 +63,17 @@ a {
     }
 
     .cart-button {
+      display: flex;
+      justify-content: space-between;
       font-size: 1.92rem;
       background-color: #ff6347;
       color: #555;
       text-decoration: none;
-      padding: 5px 10px;
+      padding: 5px 8px;
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
       transition: background-color 0.3s, color 0.3s;
+      width: 9.5rem;
 
       &:hover {
         background-color: black;
@@ -83,7 +86,7 @@ a {
 @media (max-width: 920px) {
   .navbar {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 20% 75%;
     column-gap: 5%;
     row-gap: 5%;
     padding: 0;
@@ -105,12 +108,12 @@ a {
       justify-content: right;
 
       .search-bar {
-        width: 53%;
+        width: 39%;
         height: 15px;
       }
 
       .cart-button {
-        width: 19%;
+        width: 16%;
         font-size: 1.44rem;
       }
     }
@@ -156,8 +159,9 @@ a {
       }
 
       .cart-button {
-        width: 19%;
+        width: 16%;
         font-size: 1.12rem;
+        padding: 5px 2px;
       }
     }
 

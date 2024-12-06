@@ -2,48 +2,56 @@ a {
   font-weight: bold;
 }
 
-.navbar {
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.center .Admin {
+  position: fixed;
+  width: 80%;
+  height: 5 rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
   padding: 10px 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  border-radius: 1rem;
 }
-.navbar .logo img {
+.center .Admin .logo img {
   height: 25px;
   width: auto;
 }
-.navbar .nav-links {
+.center .Admin .nav-links {
   display: flex;
   width: 35%;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
-.navbar .nav-links li {
+.center .Admin .nav-links li {
   margin: 0;
 }
-.navbar .nav-links a {
+.center .Admin .nav-links a {
   text-decoration: none;
   font-size: 1.76rem;
   color: #555;
   transition: color 0.3s;
 }
-.navbar .nav-links a:hover {
+.center .Admin .nav-links a:hover {
   color: #ff6347;
 }
-.navbar .nav-actions {
+.center .Admin .nav-actions {
   display: flex;
   align-items: center;
   gap: 10px;
   justify-content: right;
 }
-.navbar .nav-actions img {
+.center .Admin .nav-actions img {
   object-fit: contain;
   width: 3rem;
 }
-.navbar .nav-actions .search-bar {
+.center .Admin .nav-actions .search-bar {
   padding: 5px 10px;
   font-size: 1.6rem;
   border: 1px solid #ddd;
@@ -51,11 +59,11 @@ a {
   width: 60%;
   height: 30px;
 }
-.navbar .nav-actions .search-bar:focus {
+.center .Admin .nav-actions .search-bar:focus {
   border-color: #ff6347;
   outline: none;
 }
-.navbar .nav-actions .cart-button {
+.center .Admin .nav-actions .cart-button {
   display: flex;
   justify-content: space-between;
   font-size: 1.92rem;
@@ -68,87 +76,87 @@ a {
   transition: background-color 0.3s, color 0.3s;
   width: 9.5rem;
 }
-.navbar .nav-actions .cart-button:hover {
+.center .Admin .nav-actions .cart-button:hover {
   background-color: black;
   color: #fff;
 }
 
 @media (max-width: 920px) {
-  .navbar {
+  .center .Admin {
     display: grid;
-    grid-template-columns: 20% 75%;
+    grid-template-columns: 20% 70%;
     column-gap: 5%;
     row-gap: 5%;
     padding: 0;
-    height: 80px;
+    height: 60px;
   }
-  .navbar .nav-links {
+  .center .Admin .nav-links {
     grid-row: 2/3;
     grid-column: 1/-1;
     width: 100%;
     justify-content: space-around;
   }
-  .navbar .nav-links a {
+  .center .Admin .nav-links a {
     font-size: 1.44rem;
   }
-  .navbar .nav-actions {
+  .center .Admin .nav-actions {
     display: flex;
     width: 93%;
     justify-content: right;
   }
-  .navbar .nav-actions .search-bar {
+  .center .Admin .nav-actions .search-bar {
     width: 39%;
     height: 15px;
   }
-  .navbar .nav-actions .cart-button {
+  .center .Admin .nav-actions .cart-button {
     width: 16%;
     font-size: 1.44rem;
   }
-  .navbar .logo img {
+  .center .Admin .logo img {
     height: 25px;
     width: auto;
   }
 }
 @media (max-width: 640px) {
-  .navbar {
+  .center .Admin {
     display: grid;
     grid-template-rows: 45% 15% 15%;
     row-gap: 5%;
     padding: 0;
-    height: 15rem;
+    height: 10rem;
     align-items: center;
   }
-  .navbar .nav-links {
+  .center .Admin .nav-links {
     margin-top: 3rem;
     grid-column: 1/3;
     grid-row: 3/4;
     width: 100%;
     justify-content: space-around;
   }
-  .navbar .nav-links a {
+  .center .Admin .nav-links a {
     font-size: 1.12rem;
   }
-  .navbar .nav-actions {
+  .center .Admin .nav-actions {
     grid-column: 1/3;
     display: flex;
     width: 93%;
     justify-content: right;
   }
-  .navbar .nav-actions .search-bar {
+  .center .Admin .nav-actions .search-bar {
     width: 53%;
     height: 15px;
   }
-  .navbar .nav-actions .cart-button {
+  .center .Admin .nav-actions .cart-button {
     width: 16%;
     font-size: 1.12rem;
-    padding: 5px 2px;
+    padding: 5px 5px;
   }
-  .navbar .logo {
+  .center .Admin .logo {
     grid-column: 1/3;
   }
-  .navbar .logo a {
+  .center .Admin .logo a {
     font-size: 1.44rem;
   }
 }
 
-/*# sourceMappingURL=navBar.css.map */
+/*# sourceMappingURL=AdmineNavbar.css.map */

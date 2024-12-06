@@ -5,10 +5,9 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import ProductList from "./pages/ProductList";
 import Signin_up from "./components/Signin_up";
-import DeliveryList from "./components/DeliveryList";
+import OrderList from "./pages/OrderList";
 import Cart from "./components/Cart";
-import ProdCreate from "./Dashboardpages/ProdCreate"; // AA
-import Dashboard from "./Dashboardpages/Dashboard"; // AA
+import AddProduct from "./components/AddProduct";
 
 const App = () => {
   return (
@@ -19,11 +18,9 @@ const App = () => {
         <Route path="/Signin_up" element={<Signin_up isModal />} />
         <Route path="/Products" element={<ProductPage />} />
         <Route path="/Cart" element={<Cart isModal />} />
-        <Route path="/Product-Create" element={<ProdCreate />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/DeliveryList" element={<DeliveryList />} />
+        <Route path="/AddProduct" element={<AddProduct isModal />} />
+        <Route path="/OrderList" element={<OrderList />} />
         <Route path="/ProductList" element={<ProductList />} />
-        {/* AA */}
       </Routes>
     </BrowserRouter>
   );

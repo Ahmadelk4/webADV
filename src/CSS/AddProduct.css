@@ -1,0 +1,163 @@
+.cart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.cart-modal.modal-open {
+  opacity: 1;
+  visibility: visible;
+}
+.cart-modal .modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+.cart-modal .ProdCreatePage {
+  border-radius: 2rem;
+  position: relative;
+  background: #fff;
+  z-index: 1000;
+  max-width: 80rem;
+  max-height: 85%;
+  margin: 5rem auto;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.cart-modal .ProdCreatePage .content {
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+}
+.cart-modal .ProdCreatePage .content .heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+.cart-modal .ProdCreatePage .content form .flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.cart-modal .ProdCreatePage .content form .flex-col {
+  flex: 1;
+}
+.cart-modal .ProdCreatePage .content form .flex-col h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #555;
+}
+.cart-modal .ProdCreatePage .content form .flex-col input,
+.cart-modal .ProdCreatePage .content form .flex-col select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+.cart-modal .ProdCreatePage .content form .flex-col input:focus,
+.cart-modal .ProdCreatePage .content form .flex-col select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.cart-modal .ProdCreatePage .content form .SizesInputContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cart-modal .ProdCreatePage .content form .SizesInputContainer .flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cart-modal .ProdCreatePage .content form .SizesInputContainer .flex .checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.cart-modal .ProdCreatePage .content form .SizesInputContainer .flex label {
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+.cart-modal .ProdCreatePage .content form .Row4 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.cart-modal .ProdCreatePage .content form .Row4 .flex-col h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #555;
+}
+.cart-modal .ProdCreatePage .content form .Row4 .flex-col input[type=file] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+  background-color: #f9f9f9;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.cart-modal .ProdCreatePage .content form .Row4 .flex-col input[type=file]:hover {
+  background-color: #f0f8ff;
+  border-color: #007bff;
+}
+.cart-modal .ProdCreatePage .content form .submit-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.cart-modal .ProdCreatePage .content form .submit-button button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.cart-modal .ProdCreatePage .content form .submit-button button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+.cart-modal .ProdCreatePage .content form .submit-button button:active {
+  transform: scale(0.95);
+}
+
+/*# sourceMappingURL=AddProduct.css.map */

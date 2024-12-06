@@ -58,7 +58,7 @@
   .about {
     position: relative;
     flex-direction: column;
-    width: 100%;
+    width: 98%;
     height: fit-content;
   }
   .about .about-content {
@@ -89,6 +89,18 @@
     width: 100%;
     height: 35%;
     background-color: #f9946a;
+  }
+}
+@media (max-width: 814px) {
+  .about .about-content h1 {
+    font-size: 2.5rem;
+  }
+  .about .about-content h2 {
+    font-size: 1.5rem;
+  }
+  .about .about-content p {
+    font-size: 1.5rem;
+    width: 28.5rem;
   }
 }
 .premium-shades {
@@ -138,7 +150,7 @@
 }
 .premium-shades .shades-flex .item .shade-item .filter-link {
   margin-top: 0.5rem;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: #ff5722;
   text-decoration: none;
   position: relative;
@@ -162,7 +174,7 @@
   width: 100%;
 }
 .premium-shades .shades-flex .item .shade-item:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
 }
 .premium-shades .shades-flex .item .item-content {
@@ -182,7 +194,7 @@
   bottom: 0;
   right: 7%;
   width: 40%;
-  height: 170%;
+  height: 18.5rem;
 }
 @media (max-width: 1155px) {
   .premium-shades .shades-flex {
@@ -194,13 +206,14 @@
   .premium-shades .shades-flex .item {
     width: 80%;
     margin: auto;
+    margin-top: 6.5rem;
   }
   .premium-shades .shades-flex .item .shade-item {
     width: 90%;
   }
   .premium-shades .shades-flex .item .shade-item .image {
     width: 40%;
-    height: 140%;
+    height: 18.5rem;
   }
   .premium-shades .p {
     text-wrap: nowrap;
@@ -219,6 +232,7 @@
     align-items: center;
     justify-content: space-around;
     width: 95%;
+    height: 18.5rem;
     margin-top: 7rem;
   }
   .premium-shades .shades-flex .item {
@@ -226,7 +240,7 @@
     margin: auto;
   }
   .premium-shades .shades-flex .item .shade-item {
-    width: 60%;
+    width: 50%;
     margin: 2.5rem auto;
     padding: 1rem;
     border: 0.1rem solid #ddd;
@@ -234,10 +248,20 @@
     background-color: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
+    height: 7rem;
   }
-  .premium-shades .shades-flex .item .shade-item .image {
-    width: 40%;
-    height: 140%;
+  .premium-shades .shades-flex .item .shade-item .item-content {
+    width: 41%;
+  }
+  .premium-shades .shades-flex .item .shade-item .item-content .item-txt h2 {
+    font-size: 1.9rem;
+  }
+  .premium-shades .shades-flex .item .shade-item .item-content .item-txt .filter-link {
+    font-size: 1.2rem;
+  }
+  .premium-shades .shades-flex .item .shade-item .item-content .image {
+    width: 30%;
+    height: 9rem;
   }
 }
 
