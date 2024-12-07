@@ -50,8 +50,6 @@ const ProductPage = () => {
     setThumbnails(newThumbnails);
   };
 
-  const currentImageInfo = ImagesInfo[colorIndex];
-
   return (
     <div className="product-page">
       <div className="product-images">
