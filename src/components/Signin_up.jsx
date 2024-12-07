@@ -38,8 +38,8 @@ export default function Signin_up({ isModal }) {
               <input type="email" name="email" placeholder="Email" required />
               <input
                 type="number"
-                name="broj"
-                placeholder="BrojTelefona"
+                name="Number"
+                placeholder="phone Number"
                 required
               />
               <input

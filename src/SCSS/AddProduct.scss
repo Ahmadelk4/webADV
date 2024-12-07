@@ -1,4 +1,7 @@
-.cart-modal {
+.scrollable-element::-webkit-scrollbar {
+  display: none;
+}
+.addProduct-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -38,7 +41,9 @@
     margin: 5rem auto;
     overflow-y: auto;
     animation: slideIn 0.3s ease;
-
+    &::-webkit-scrollbar {
+      display: none;
+    }
     @keyframes slideIn {
       from {
         transform: translateY(-20%);

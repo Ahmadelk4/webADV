@@ -16,7 +16,7 @@ export default function ProdCreate({ isModal }) {
   };
 
   return (
-    <div className={`cart-modal ${isModal ? "modal-open" : ""}`}>
+    <div className={`addProduct-modal ${isModal ? "modal-open" : ""}`}>
       <div className="modal-overlay" onClick={handleCloseModal}></div>
       <div className="ProdCreatePage">
         <div className="content">

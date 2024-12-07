@@ -25,9 +25,10 @@ a {
 }
 .center .Admin .nav-links {
   display: flex;
-  width: 35%;
-  justify-content: space-around;
+  width: 50%;
+  justify-content: space-between;
   align-items: center;
+  margin: 0 15px;
 }
 .center .Admin .nav-links li {
   margin: 0;
@@ -93,7 +94,7 @@ a {
   .center .Admin .nav-links {
     grid-row: 2/3;
     grid-column: 1/-1;
-    width: 100%;
+    width: 90%;
     justify-content: space-around;
   }
   .center .Admin .nav-links a {

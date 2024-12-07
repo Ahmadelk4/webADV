@@ -31,6 +31,9 @@
   overflow-y: auto;
   font-family: Arial, sans-serif;
 }
+.cart-modal .cart::-webkit-scrollbar {
+  display: none;
+}
 .cart-modal .cart h1 {
   font-size: 2rem;
   margin: 1rem 0 2rem 1rem;

@@ -32,7 +32,9 @@
     margin: 5rem auto;
     overflow-y: auto;
     font-family: Arial, sans-serif;
-
+    &::-webkit-scrollbar {
+      display: none;
+    }
     h1 {
       font-size: 2rem;
       margin: 1rem 0 2rem 1rem;
