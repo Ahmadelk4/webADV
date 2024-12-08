@@ -76,18 +76,21 @@
   font-weight: bold;
   color: #555;
 }
-.products-list .product-container .product-row span.quantity {
-  font-weight: bold;
-  padding: 5px 10px;
+.products-list .product-container .product-row span.amount {
+  padding: 3px 0;
   border-radius: 8px;
+  display: inline-block;
+  text-align: center;
 }
-.products-list .product-container .product-row span.not-delivered {
-  background-color: #f8d7da;
-  color: #721c24;
+.products-list .product-container .product-row span.not-available {
+  background-color: #ffe4e6; /* Light red */
+  color: #b22234; /* Darker red for text */
+  border: 1px solid #b22234; /* Matching border color */
 }
-.products-list .product-container .product-row span.delivered {
-  background-color: #d4edda;
-  color: #155724;
+.products-list .product-container .product-row span.available {
+  background-color: #e8f5e9; /* Light green */
+  color: #2e7d32; /* Dark green for text */
+  border: 1px solid #2e7d32; /* Matching border color */
 }
 .products-list .product-container .product-row .button {
   background-color: transparent;
@@ -128,11 +131,11 @@
   .products-list .product-container .product-row span {
     width: 30%;
     display: flex;
-    align-items: left;
+    align-items: flex-start;
     justify-content: space-around;
   }
   .products-list .product-container .product-row span.type {
-    display: inline;
+    display: inline; /* Show labels for small screens */
   }
   .products-list .product-container .product-row span span {
     width: fit-content;

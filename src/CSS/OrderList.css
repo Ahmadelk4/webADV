@@ -81,6 +81,12 @@
   padding: 5px 10px;
   border-radius: 8px;
 }
+.Order-list .product-container .product-row span.status {
+  padding: 3px 0;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: center;
+}
 .Order-list .product-container .product-row span.not-delivered {
   background-color: #f8d7da;
   color: #721c24;

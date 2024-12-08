@@ -1,0 +1,310 @@
+************************************************************************************************************
+
+
+CREATE TABLE Users(
+    db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    db_username VARCHAR(30) NOT NULL,
+    db_phone INT(11) NOT NULL,
+    PWD VARCHAR(255) NOT NULL,
+    db_email VARCHAR(100) NOT NULL
+);
+
+
+
+CREATE TABLE Products(
+    db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    db_prod_name VARCHAR(30) NOT NULL,  
+    db_prod_detail VARCHAR(255),
+    db_size VARCHAR(10) NOT NULL,
+    db_amount INT(11) ,
+    db_prod_main_image VARCHAR(255) NOT NULL,
+    db_prod_thum1_image VARCHAR(255) NOT NULL,
+    db_prod_thum2_image VARCHAR(255) NOT NULL,
+    db_prod_thum3_image VARCHAR(255) NOT NULL,
+    db_color VARCHAR(255) NOT NULL,
+    db_category VARCHAR(255) NOT NULL,
+    db_price INT(11) NOT NULL,
+    db_discount INT(11) NOT NULL,
+    db_amount INT(11) NOT NULL,
+    db_created_at DATETIME NOT NULL DEFAULT CURRENT_TIME
+);
+
+
+CREATE TABLE sizes(
+    db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    db_size VARCHAR(10) NOT NULL,
+    db_amount INT(11) ,
+    db_product_id INT(11) NOT NULL,
+    FOREIGN KEY(db_product_id) REFERENCES products(db_id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE orders(
+    db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    db_deli_status VARCHAR(30) NOT NULL,
+    db_deli_address VARCHAR(255),
+    db_amount INT(11) NOT NULL ,
+    db_product_id INT(11) NOT NULL,
+    db_user_id INT(11) NOT NULL,
+    FOREIGN KEY(db_product_id) REFERENCES products(db_id) ON DELETE CASCADE,
+    FOREIGN KEY(db_user_id) REFERENCES products(db_id) ON DELETE CASCADE
+);
+************************************************************************************************************
+
+
+http://localhost//webadv/backend/getProducts.php
+
+http://localhost//webadv/backend/setProducts.php
+
+
+
+************************************************************************************************************
+
+from react to php
+
+import "../CSS/AddProduct.css";
+import { useNavigate } from "react-router-dom";
+
+export default function ProdCreate({ isModal }) {
+  const navigate = useNavigate();
+
+  const handleCloseModal = () => {
+    navigate(-1); // Closes the modal and navigates back
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+    const sizes = formData.getAll("sizes");
+    data.sizes = sizes;
+
+    fetch("http://yourserver.com/api/saveProduct.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          alert("Product added successfully!");
+          navigate(-1); // Close modal
+        } else {
+          alert("Failed to add product: " + result.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while adding the product.");
+      });
+  };
+
+  return (
+    <div className={`addProduct-modal ${isModal ? "modal-open" : ""}`}>
+      <div className="modal-overlay" onClick={handleCloseModal}></div>
+      <div className="ProdCreatePage">
+        <div className="content">
+          <h1 className="heading">Add a New Product:</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="flex Row1">
+              <div className="flex-col">
+                <h3>Name:</h3>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter product Name"
+                  required
+                />
+              </div>
+              <div className="flex-col">
+                <h3>Description:</h3>
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="Enter product Description"
+                  required
+                />
+              </div>
+              <div className="flex-col">
+                <h3>Price:</h3>
+                <input
+                  type="number"
+                  name="price"
+                  placeholder="30"
+                  required
+                  min="0"
+                />
+              </div>
+              <div className="flex-col">
+                <h3>Color:</h3>
+                <input type="text" name="color" placeholder="Green" required />
+              </div>
+            </div>
+            <div className="flex Row2">
+              <div className="flex-col">
+                <h3>Category:</h3>
+                <select name="category" defaultValue="" required>
+                  <option value="" disabled>
+                    Select Category
+                  </option>
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                  <option value="Boys">Boys</option>
+                  <option value="Girls">Girls</option>
+                </select>
+              </div>
+              <div className="flex-col">
+                <h3>Available Sizes:</h3>
+                <div className="flex SizesInputContainer">
+                  {["X-Small", "Small", "Medium", "Large", "X-Large"].map(
+                    (size) => (
+                      <div className="flex flex--label" key={size}>
+                        <input
+                          type="checkbox"
+                          name="sizes"
+                          value={size}
+                          id={size.toLowerCase()}
+                        />
+                        <label htmlFor={size.toLowerCase()}>{size}</label>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="flex Row3">
+              <div className="flex-col">
+                <h3>In Stock:</h3>
+                <input
+                  type="number"
+                  name="stock"
+                  placeholder="12"
+                  required
+                  min="0"
+                />
+              </div>
+              <div className="flex-col">
+                <h3>Discount:</h3>
+                <input type="text" name="discount" placeholder="15%" required />
+              </div>
+            </div>
+            <div className="flex Row4">
+              <div className="flex-col">
+                <h3>Upload Image:</h3>
+                <input type="file" name="image" accept="image/*" required />
+              </div>
+            </div>
+            <div className="flex submit-button">
+              <button type="submit">Add Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+the PHP*************************************
+
+<?php
+require_once 'db_connection.php'; // External connection file
+
+header("Content-Type: application/json");
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+if (!$data) {
+    echo json_encode(["success" => false, "message" => "Invalid data received."]);
+    exit;
+}
+
+// Sanitize input
+$name = htmlspecialchars($data['name']);
+$description = htmlspecialchars($data['description']);
+$price = floatval($data['price']);
+$color = htmlspecialchars($data['color']);
+$category = htmlspecialchars($data['category']);
+$sizes = implode(',', array_map('htmlspecialchars', $data['sizes']));
+$stock = intval($data['stock']);
+$discount = htmlspecialchars($data['discount']);
+$image = htmlspecialchars($data['image']); // Process image uploading in real implementation
+
+// Insert into database
+try {
+    $stmt = $pdo->prepare("INSERT INTO products (name, description, price, color, category, sizes, stock, discount, image) 
+                            VALUES (:name, :description, :price, :color, :category, :sizes, :stock, :discount, :image)");
+    $stmt->execute([
+        ':name' => $name,
+        ':description' => $description,
+        ':price' => $price,
+        ':color' => $color,
+        ':category' => $category,
+        ':sizes' => $sizes,
+        ':stock' => $stock,
+        ':discount' => $discount,
+        ':image' => $image
+    ]);
+    echo json_encode(["success" => true]);
+} catch (Exception $e) {
+    echo json_encode(["success" => false, "message" => $e->getMessage()]);
+}
+********************************************************************************************************8
+
+
+const initialProducts = [
+  {
+    id: 0,
+    image: T_shirt,
+    name: "Shirt",
+    about: "",
+    price: 20.0,
+    discount: 0,
+    clothesCategory: "Male",
+    amount: 0,
+    availableSizes: "M",
+    availableColor: "Green",
+  },
+  {
+    id: 1,
+    image: T_shirt,
+    name: "Shirt",
+    about: "",
+    price: 20.0,
+    discount: 0,
+    clothesCategory: "Male",
+    amount: 3,
+    availableSizes: "M",
+    availableColor: "Green",
+  },
+  {
+    id: 2,
+    image: T_shirt,
+    name: "Shirt",
+    about: "",
+    price: 20.0,
+    discount: 0,
+    clothesCategory: "Male",
+    amount: 3,
+    availableSizes: "M",
+    availableColor: "Green",
+  },
+  {
+    id: 3,
+    image: T_shirt,
+    name: "Shirt",
+    about: "",
+    price: 20.0,
+    discount: 0,
+    clothesCategory: "Male",
+    amount: 0,
+    availableSizes: "M",
+    availableColor: "Red",
+  },
+];
+
+
+
+src\assets\productPage\mainImage.png

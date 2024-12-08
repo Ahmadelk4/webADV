@@ -1,18 +1,67 @@
 import "../CSS/AddProduct.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function ProdCreate({ isModal }) {
   const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    color: "",
+    category: "",
+    sizes: "",
+    stock: "",
+    discount: "",
+    main_image: "",
+    thum1: "",
+    thum2: "",
+    thum3: "",
+  });
 
   const handleCloseModal = () => {
     navigate(-1); // Closes the modal and navigates back
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data); // Handle form submission logic here
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    if (files && files[0]) {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: files[0].name, // Save the file name to formData
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost//webadv/backend/setProducts.php", // Replace with your PHP endpoint
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Response:", response.data);
+      alert("Product added successfully!");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to add product. Please try again.");
+    }
   };
 
   return (
@@ -30,6 +79,7 @@ export default function ProdCreate({ isModal }) {
                   name="name"
                   placeholder="Enter product Name"
                   required
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="flex-col">
@@ -39,6 +89,7 @@ export default function ProdCreate({ isModal }) {
                   name="description"
                   placeholder="Enter product Description"
                   required
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="flex-col">
@@ -49,17 +100,29 @@ export default function ProdCreate({ isModal }) {
                   placeholder="30"
                   required
                   min="0"
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="flex-col">
                 <h3>Color:</h3>
-                <input type="text" name="color" placeholder="Green" required />
+                <input
+                  type="text"
+                  name="color"
+                  placeholder="Green"
+                  required
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
             <div className="flex Row2">
               <div className="flex-col">
                 <h3>Category:</h3>
-                <select name="category" defaultValue="" required>
+                <select
+                  name="category"
+                  defaultValue=""
+                  required
+                  onChange={handleInputChange}
+                >
                   <option value="" disabled>
                     Select Category
                   </option>
@@ -72,51 +135,20 @@ export default function ProdCreate({ isModal }) {
               <div className="flex-col">
                 <h3>Available Sizes:</h3>
                 <div className="flex SizesInputContainer">
-                  <div className="flex flex--label">
-                    <input
-                      type="checkbox"
-                      name="sizes"
-                      value="X-Small"
-                      id="x-small"
-                    />
-                    <label htmlFor="x-small">X-Small</label>
-                  </div>
-                  <div className="flex flex--label">
-                    <input
-                      type="checkbox"
-                      name="sizes"
-                      value="Small"
-                      id="small"
-                    />
-                    <label htmlFor="small">Small</label>
-                  </div>
-                  <div className="flex flex--label">
-                    <input
-                      type="checkbox"
-                      name="sizes"
-                      value="Medium"
-                      id="medium"
-                    />
-                    <label htmlFor="medium">Medium</label>
-                  </div>
-                  <div className="flex flex--label">
-                    <input
-                      type="checkbox"
-                      name="sizes"
-                      value="Large"
-                      id="large"
-                    />
-                    <label htmlFor="large">Large</label>
-                  </div>
-                  <div className="flex flex--label">
-                    <input
-                      type="checkbox"
-                      name="sizes"
-                      value="X-Large"
-                      id="x-large"
-                    />
-                    <label htmlFor="x-large">X-Large</label>
-                  </div>
+                  {["X-Small", "Small", "Medium", "Large", "X-Large"].map(
+                    (size) => (
+                      <div className="flex flex--label" key={size}>
+                        <input
+                          type="radio"
+                          name="sizes"
+                          value={size}
+                          id={size.toLowerCase()}
+                          onChange={handleInputChange}
+                        />
+                        <label htmlFor={size.toLowerCase()}>{size}</label>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
             </div>
@@ -129,17 +161,57 @@ export default function ProdCreate({ isModal }) {
                   placeholder="12"
                   required
                   min="0"
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="flex-col">
                 <h3>Discount:</h3>
-                <input type="text" name="discount" placeholder="15%" required />
+                <input
+                  type="text"
+                  name="discount"
+                  placeholder="25"
+                  required
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
             <div className="flex Row4">
               <div className="flex-col">
-                <h3>Upload Image:</h3>
-                <input type="file" name="image" accept="image/*" required />
+                <h3>Main Image:</h3>
+                <input
+                  type="file"
+                  name="main_image"
+                  accept="image/*"
+                  required
+                  onChange={handleFileChange}
+                />
+              </div>
+              <div className="flex-col">
+                <h3>Thumbnail 1:</h3>
+                <input
+                  type="file"
+                  name="thum1"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
+              </div>
+              <div className="flex-col">
+                <h3>Thumbnail 2:</h3>
+                <input
+                  type="file"
+                  name="thum2"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
+              </div>
+              <div className="flex-col">
+                <h3>Thumbnail 3:</h3>
+                <input
+                  type="file"
+                  name="thum3"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
               </div>
             </div>
             <div className="flex submit-button">

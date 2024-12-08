@@ -1,68 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "../CSS/ProductList.css";
 import AdmineNavbar from "../components/AdmineNavbar";
-import T_shirt from "../assets/T-shirt.png";
 import Edit from "../assets/Edit.svg";
 import Delete from "../assets/Delete.svg";
-
-const initialProducts = [
-  {
-    id: 0,
-    image: T_shirt,
-    name: "Shirt",
-    about: "",
-    price: 20.0,
-    discount: 0,
-    clothesCategory: "Male",
-    status: "not delivered",
-    availableSizes: "M",
-    availableColor: "Green",
-  },
-  {
-    id: 1,
-    image: T_shirt,
-    name: "Shirt",
-    about: "",
-    price: 20.0,
-    discount: 0,
-    clothesCategory: "Male",
-    status: "delivered",
-    availableSizes: "M",
-    availableColor: "Green",
-  },
-  {
-    id: 2,
-    image: T_shirt,
-    name: "Shirt",
-    about: "",
-    price: 20.0,
-    discount: 0,
-    clothesCategory: "Male",
-    status: "delivered",
-    availableSizes: "M",
-    availableColor: "Green",
-  },
-  {
-    id: 3,
-    image: T_shirt,
-    name: "Shirt",
-    about: "",
-    price: 20.0,
-    discount: 0,
-    clothesCategory: "Male",
-    status: "not delivered",
-    availableSizes: "M",
-    availableColor: "Red",
-  },
-];
+import Delete2 from "../assets/productPage/mainImage.png";
 
 const ProductList = () => {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost//webadv/backend/getProducts.php")
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
 
   const handleDelete = (id) => {
-    const updatedProducts = products.filter((product) => product.id !== id);
+    const updatedProducts = products.filter((product) => product.db_id !== id);
     setProducts(updatedProducts);
+  };
+
+  const getAmountClass = (amount) => {
+    return amount === 0 ? "not-available" : "available";
   };
 
   return (
@@ -82,56 +47,60 @@ const ProductList = () => {
             <span>Color</span>
             <span>Sale Price</span>
             <span>Discount</span>
-            <span>status</span>
+            <span>Amount</span>
           </div>
 
           {products.map((product) => (
-            <div key={product.id} className="product-row">
+            <div key={product.db_id} className="product-row">
               <div className="product-item">
                 <span className="type">Item</span>
-                <img src={product.image} alt={product.name} />
+                <img
+                  src={`src/assets/productPage/${product.db_prod_main_image}`}
+                  alt={product.db_prod_name}
+                />
                 <div className="product-text">
-                  <p className="name"> {product.name}</p>
-                  <p className="about">{product.about || "No description"}</p>
+                  <p className="name">{product.db_prod_name}</p>
+                  <p className="about">
+                    {product.db_prod_detail || "No description"}
+                  </p>
                 </div>
               </div>
               <span>
-                <span className="type">ID</span> {product.id}
+                <span className="type">ID</span> {product.db_id}
               </span>
               <span>
-                <span className="type">Category</span> {product.clothesCategory}
+                <span className="type">Category</span> {product.db_category}
               </span>
               <span>
-                <span className="type">Size</span> {product.availableSizes}
+                <span className="type">Size</span> {product.db_size}
               </span>
               <span>
                 <span className="type">Color</span>
-                {product.availableColor}
+                {product.db_color}
               </span>
-
               <span>
                 <span className="type">Sale Price</span>$
-                {product.price.toFixed(2)}
+                {product.db_price.toFixed(2)}
               </span>
               <span>
                 <span className="type">Discount</span>
-                {product.discount}%
+                {product.db_discount}%
               </span>
               <span
-                className={`status ${
-                  product.status === "delivered" ? "delivered" : "not-delivered"
+                className={`amount ${
+                  product.db_amount === 0 ? "not-available" : "available"
                 }`}
               >
-                <span className="type"> status</span> {product.status}
+                <span className="type">Amount</span> {product.db_amount}
               </span>
 
               <div className="buttons">
                 <Link to="/AddProduct" className="button">
-                  <img src={Edit} alt="edit" />
+                  <img src={Edit} alt="Edit" />
                 </Link>
                 <button
                   className="button"
-                  onClick={() => handleDelete(product.id)}
+                  onClick={() => handleDelete(product.db_id)}
                 >
                   <img src={Delete} alt="Delete" />
                 </button>

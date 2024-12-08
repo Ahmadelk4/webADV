@@ -5,10 +5,10 @@ import MainImageSrc from "../assets/productPage/mainImage.png";
 import Thumbnail1 from "../assets/productPage/thumbnail-1.png";
 import Thumbnail2 from "../assets/productPage/thumbnail-2.png";
 import Thumbnail3 from "../assets/productPage/thumbnail-3.png";
-import MainImageSrc2 from "../assets/productPage2/mainImage.png";
-import Thumbnail2_1 from "../assets/productPage2/thumbnail-1.png";
-import Thumbnail2_2 from "../assets/productPage2/thumbnail-2.png";
-import Thumbnail2_3 from "../assets/productPage2/thumbnail-3.png";
+import MainImageSrc2 from "../assets/productPage/mainImage2.png";
+import Thumbnail2_1 from "../assets/productPage/thumbnail2-1.png";
+import Thumbnail2_2 from "../assets/productPage/thumbnail2-2.png";
+import Thumbnail2_3 from "../assets/productPage/thumbnail2-3.png";
 
 const ProductPage = () => {
   const ImagesInfo = [
