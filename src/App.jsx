@@ -3,6 +3,8 @@ import "./CSS/navBar.css";
 import ProductPage from "./pages/Product";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
+import New from "./pages/New";
+import Sale from "./pages/Sale";
 import ProductList from "./pages/ProductList";
 import Signin_up from "./components/Signin_up";
 import OrderList from "./pages/OrderList";
@@ -21,6 +23,8 @@ const App = () => {
         <Route path="/AddProduct" element={<AddProduct isModal />} />
         <Route path="/OrderList" element={<OrderList />} />
         <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/New" element={<New />} />
+        <Route path="/sale" element={<Sale />} />
       </Routes>
     </BrowserRouter>
   );

@@ -11,7 +11,7 @@
 
   $sql = "SELECT 
               db_id, db_prod_name, db_prod_detail, db_size, db_amount, 
-              db_prod_main_image, db_prod_thum1_image, db_prod_thum2_image, db_prod_thum3_image, 
+              db_prod_main_image,
               db_color, db_category, db_price, db_discount
           FROM Products";
 

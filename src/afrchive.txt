@@ -10,7 +10,6 @@ CREATE TABLE Users(
 );
 
 
-
 CREATE TABLE Products(
     db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     db_prod_name VARCHAR(30) NOT NULL,  
@@ -33,9 +32,21 @@ CREATE TABLE Products(
 CREATE TABLE sizes(
     db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     db_size VARCHAR(10) NOT NULL,
-    db_amount INT(11) ,
+    db_amount INT(11) NOT NULL,
     db_product_id INT(11) NOT NULL,
     FOREIGN KEY(db_product_id) REFERENCES products(db_id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Cart(
+    db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    db_prod_name VARCHAR(30) NOT NULL,  
+    db_size VARCHAR(10) NOT NULL,
+    db_amount INT(11) ,
+    db_prod_main_image VARCHAR(255) NOT NULL,
+    db_color VARCHAR(255) NOT NULL,
+    db_price INT(11) NOT NULL,
+    db_ordered_at DATETIME NOT NULL DEFAULT CURRENT_TIME
 );
 
 
@@ -49,6 +60,7 @@ CREATE TABLE orders(
     FOREIGN KEY(db_product_id) REFERENCES products(db_id) ON DELETE CASCADE,
     FOREIGN KEY(db_user_id) REFERENCES products(db_id) ON DELETE CASCADE
 );
+
 ************************************************************************************************************
 
 
@@ -56,6 +68,7 @@ http://localhost//webadv/backend/getProducts.php
 
 http://localhost//webadv/backend/setProducts.php
 
+http://localhost//webadv/backend/updateProduct.php
 
 
 ************************************************************************************************************

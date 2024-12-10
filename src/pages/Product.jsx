@@ -1,45 +1,67 @@
-import React, { useState } from "react";
-// import ImagesCard from "../components/ImagesCard";
+import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "../CSS/Product.css";
-import MainImageSrc from "../assets/productPage/mainImage.png";
-import Thumbnail1 from "../assets/productPage/thumbnail-1.png";
-import Thumbnail2 from "../assets/productPage/thumbnail-2.png";
-import Thumbnail3 from "../assets/productPage/thumbnail-3.png";
-import MainImageSrc2 from "../assets/productPage/mainImage2.png";
-import Thumbnail2_1 from "../assets/productPage/thumbnail2-1.png";
-import Thumbnail2_2 from "../assets/productPage/thumbnail2-2.png";
-import Thumbnail2_3 from "../assets/productPage/thumbnail2-3.png";
+import ImageCard from "../components/ImagesCard"; // Ensure the filename is correct and matches the export
 
 const ProductPage = () => {
-  const ImagesInfo = [
-    {
-      color: "green",
-      Main: MainImageSrc,
-      Thumbnails: [Thumbnail1, Thumbnail2, Thumbnail3],
-    },
-    {
-      color: "brown",
-      Main: MainImageSrc2,
-      Thumbnails: [Thumbnail2_1, Thumbnail2_2, Thumbnail2_3],
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [currentGroup, setCurrentGroup] = useState(null);
+  const [currentProduct, setCurrentProduct] = useState(null);
+  const [mainImage, setMainImage] = useState("");
+  const [thumbnails, setThumbnails] = useState([]);
 
-  const [colorIndex, setColorIndex] = useState(0);
-  const [mainImage, setMainImage] = useState(ImagesInfo[colorIndex].Main);
-  const [thumbnails, setThumbnails] = useState(
-    ImagesInfo[colorIndex].Thumbnails
-  );
-  const [size, setSize] = useState("");
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const product_Name = queryParams.get("productName");
 
-  const handleColorChange = (index) => {
-    setColorIndex(index);
-    const selectedImageInfo = ImagesInfo[index];
-    setMainImage(selectedImageInfo.Main);
-    setThumbnails(selectedImageInfo.Thumbnails);
+  const productName = product_Name;
+
+  useEffect(() => {
+    fetch(
+      `http://localhost//webadv/backend/productPage.php?productName=${encodeURIComponent(
+        productName
+      )}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data);
+        if (data.length > 0) {
+          setCurrentGroup(data[0]);
+          setCurrentProduct(data[0].sizes[0]);
+          setMainImage(`src/assets/productPage/${data[0].sizes[0].mainImage}`);
+          setThumbnails(
+            data[0].sizes[0].thumbnails.map(
+              (thumbnail) => `src/assets/productPage/${thumbnail}`
+            )
+          );
+        }
+      })
+      .catch((error) => console.error("Error fetching product data:", error));
+  }, [productName]);
+
+  const handleColorChange = (group) => {
+    setCurrentGroup(group);
+    const firstSize = group.sizes[0];
+    setCurrentProduct(firstSize);
+    setMainImage(`src/assets/productPage/${firstSize.mainImage}`);
+    setThumbnails(
+      firstSize.thumbnails.map(
+        (thumbnail) => `src/assets/productPage/${thumbnail}`
+      )
+    );
   };
 
-  const handleSizeChange = (event) => {
-    setSize(event.target.value);
+  const handleSizeChange = (size) => {
+    const product = currentGroup.sizes.find((p) => p.size === size);
+    if (product) {
+      setCurrentProduct(product);
+      setMainImage(`src/assets/productPage/${product.mainImage}`);
+      setThumbnails(
+        product.thumbnails.map(
+          (thumbnail) => `src/assets/productPage/${thumbnail}`
+        )
+      );
+    }
   };
 
   const handleThumbnailClick = (index) => {
@@ -50,56 +72,112 @@ const ProductPage = () => {
     setThumbnails(newThumbnails);
   };
 
+  if (!currentProduct || !currentGroup) {
+    return <p>Loading products...</p>;
+  }
+
+  const handleAddToCart = () => {
+    const cartData = {
+      db_prod_name: productName,
+      db_size: currentProduct.size,
+      db_amount: 1, // Default amount
+      db_prod_main_image: currentProduct.mainImage,
+      db_color: currentGroup.color,
+      db_price: currentProduct.price,
+    };
+
+    fetch("http://localhost//webadv/backend/addToCart.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Product added to cart successfully!");
+        } else {
+          alert("Failed to add product to cart.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
+        alert("Error adding product to cart.");
+      });
+  };
+
+  // console.log(
+  //    -
+  //     currentProduct.db_price * (currentProduct.db_discount / 100)
+  // );
+
+  console.log(currentProduct.price);
+
+  console.log(currentProduct.discount);
+
+  let sale = currentProduct.db_price;
+
+  console.log(sale);
+
   return (
     <div className="product-page">
       <div className="product-images">
-        <img src={mainImage} alt="Main product" className="main-image" />
-
-        <div className="thumbnail-images">
-          {thumbnails.map((thumbnail, index) => (
-            <img
-              key={index}
-              className="thumbnail-image"
-              src={thumbnail}
-              alt={`Thumbnail ${index + 1}`}
-              onClick={() => handleThumbnailClick(index)} // Swap main image on click
-            />
-          ))}
-        </div>
+        <ImageCard
+          mainImage={mainImage}
+          thumbnails={thumbnails}
+          onThumbnailClick={handleThumbnailClick}
+        />
       </div>
 
       <div className="product-info">
         <p>Men's</p>
-        <h1>Z.N.E. Full-Zip Hooded Track Jacket</h1>
+        <h1>{productName}</h1>
+        <p>{currentProduct.detail}</p>
         <p className="price">
-          <span className="original-price">$48.00</span>{" "}
-          <span className="discounted-price">$36.00</span>
+          {currentProduct.discount ? (
+            <>
+              <span className="original-price">${currentProduct.price}</span>
+              <span className="sale-price">
+                $
+                {currentProduct.price -
+                  (currentProduct.price * currentProduct.discount) / 100}
+              </span>
+            </>
+          ) : (
+            `$${currentProduct.price}`
+          )}
         </p>
         <p className="color">Colors</p>
         <div>
-          {ImagesInfo.map((info, index) => {
-            const isSelected = index === colorIndex;
-            return (
-              <img
-                key={info.id}
-                className={`color-image ${isSelected ? "selected" : ""}`}
-                src={info.Main}
-                alt={`Color Thumbnail ${index + 1}`}
-                onClick={() => handleColorChange(index)}
-              />
-            );
-          })}
+          {products.map((group, index) => (
+            <img
+              key={index}
+              className={`color-image ${
+                group.color === currentGroup.color ? "selected" : ""
+              }`}
+              src={`src/assets/productPage/${group.mainImage}`}
+              alt={`Color Thumbnail ${index + 1}`}
+              onClick={() => handleColorChange(group)}
+            />
+          ))}
         </div>
         <div className="size-select">
           <label htmlFor="size">Size: </label>
-          <select id="size" value={size} onChange={handleSizeChange}>
-            <option value="">Please select</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
+          <select
+            id="size"
+            value={currentProduct.size}
+            onChange={(e) => handleSizeChange(e.target.value)}
+          >
+            {currentGroup.sizes.map((product, index) => (
+              <option key={index} value={product.size}>
+                {product.size}
+              </option>
+            ))}
           </select>
         </div>
-        <button className="add-to-cart">Add to Cart</button>
+        <button className="add-to-cart" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
         <p className="free-shipping">Free Shipping & Returns*</p>
       </div>
     </div>
@@ -107,3 +185,170 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+// import { useLocation } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import "../CSS/Product.css";
+// import ImageCard from "../components/ImagesCard"; // Ensure the filename is correct and matches the export
+
+// const ProductPage = () => {
+//   const [products, setProducts] = useState([]);
+//   const [currentGroup, setCurrentGroup] = useState(null);
+//   const [currentProduct, setCurrentProduct] = useState(null);
+//   const [mainImage, setMainImage] = useState("");
+//   const [thumbnails, setThumbnails] = useState([]);
+
+//   const location = useLocation();
+//   const queryParams = new URLSearchParams(location.search);
+//   const product_Name = queryParams.get("productName");
+
+//   const productName = product_Name;
+
+//   useEffect(() => {
+//     fetch(
+//       `http://localhost/webadv/backend/productPage.php?productName=${encodeURIComponent(
+//         productName
+//       )}`
+//     )
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setProducts(data);
+//         if (data.length > 0) {
+//           setCurrentGroup(data[0]);
+//           setCurrentProduct(data[0].sizes[0]);
+//           setMainImage(`/assets/productPage/${data[0].sizes[0].mainImage}`);
+//           setThumbnails(
+//             data[0].sizes[0].thumbnails.map(
+//               (thumbnail) => `/assets/productPage/${thumbnail}`
+//             )
+//           );
+//         }
+//       })
+//       .catch((error) => console.error("Error fetching product data:", error));
+//   }, [productName]);
+
+//   const handleColorChange = (group) => {
+//     setCurrentGroup(group);
+//     const firstSize = group.sizes[0];
+//     setCurrentProduct(firstSize);
+//     setMainImage(`/assets/productPage/${firstSize.mainImage}`);
+//     setThumbnails(
+//       firstSize.thumbnails.map(
+//         (thumbnail) => `/assets/productPage/${thumbnail}`
+//       )
+//     );
+//   };
+
+//   const handleSizeChange = (size) => {
+//     const product = currentGroup.sizes.find((p) => p.size === size);
+//     if (product) {
+//       setCurrentProduct(product);
+//       setMainImage(`/assets/productPage/${product.mainImage}`);
+//       setThumbnails(
+//         product.thumbnails.map(
+//           (thumbnail) => `/assets/productPage/${thumbnail}`
+//         )
+//       );
+//     }
+//   };
+
+//   const handleThumbnailClick = (index) => {
+//     const newThumbnails = [...thumbnails];
+//     const temp = newThumbnails[index];
+//     newThumbnails[index] = mainImage;
+//     setMainImage(temp);
+//     setThumbnails(newThumbnails);
+//   };
+
+//   if (!currentProduct || !currentGroup) {
+//     return <p>Loading products...</p>;
+//   }
+
+//   const handleAddToCart = () => {
+//     const cartData = {
+//       db_prod_name: productName,
+//       db_size: currentProduct.size,
+//       db_amount: 1, // Default amount
+//       db_prod_main_image: currentProduct.mainImage,
+//       db_color: currentGroup.color,
+//       db_price: currentProduct.price,
+//     };
+
+//     fetch("http://localhost/webadv/backend/addToCart.php", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(cartData),
+//     })
+//       .then((response) => {
+//         if (response.ok) {
+//           alert("Product added to cart successfully!");
+//         } else {
+//           alert("Failed to add product to cart.");
+//         }
+//       })
+//       .catch((error) => {
+//         console.error("Error adding product to cart:", error);
+//         alert("Error adding product to cart.");
+//       });
+//   };
+
+//   return (
+//     <div className="product-page">
+//       <div className="product-images">
+//         <ImageCard
+//           mainImage={mainImage}
+//           thumbnails={thumbnails}
+//           onThumbnailClick={handleThumbnailClick}
+//         />
+//       </div>
+
+//       <div className="product-info">
+//         <p>Men's</p>
+//         <h1>{productName}</h1>
+//         <p>{currentProduct.detail}</p>
+//         <p className="price">
+//           <span className="original-price">${currentProduct.price}</span>{" "}
+//           <span className="discounted-price">
+//             ${currentProduct.price - currentProduct.discount}
+//           </span>
+//         </p>
+//         <p className="color">Colors</p>
+//         <div>
+//           {products.map((group, index) => (
+//             <img
+//               key={index}
+//               className={`color-image ${
+//                 group.color === currentGroup.color ? "selected" : ""
+//               }`}
+//               src={`/assets/productPage/${group.mainImage}`}
+//               alt={`Color Thumbnail ${index + 1}`}
+//               onClick={() => handleColorChange(group)}
+//             />
+//           ))}
+//         </div>
+//         <div className="size-select">
+//           <label htmlFor="size">Size: </label>
+//           <select
+//             id="size"
+//             value={currentProduct.size}
+//             onChange={(e) => handleSizeChange(e.target.value)}
+//           >
+//             {currentGroup.sizes.map((product, index) => (
+//               <option key={index} value={product.size}>
+//                 {product.size}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//         <button className="add-to-cart" onClick={handleAddToCart}>
+//           Add to Cart
+//         </button>
+//         <p className="free-shipping">Free Shipping & Returns*</p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProductPage;

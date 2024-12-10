@@ -5,7 +5,6 @@ import "../CSS/ProductList.css";
 import AdmineNavbar from "../components/AdmineNavbar";
 import Edit from "../assets/Edit.svg";
 import Delete from "../assets/Delete.svg";
-import Delete2 from "../assets/productPage/mainImage.png";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -21,15 +20,27 @@ const ProductList = () => {
       });
   }, []);
 
-  const handleDelete = (id) => {
-    const updatedProducts = products.filter((product) => product.db_id !== id);
-    setProducts(updatedProducts);
-  };
+  // const handleDelete = (id) => {
+  //   const updatedProducts = products.filter((product) => product.db_id !== id);
+  //   setProducts(updatedProducts);
+  // };
 
-  const getAmountClass = (amount) => {
-    return amount === 0 ? "not-available" : "available";
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.post(
+        "http://localhost/webadv/backend/deleteProduct.php",
+        { id }
+      );
+      if (response.data.success) {
+        setProducts(products.filter((product) => product.db_id !== id)); // Update the UI
+        alert("Product deleted successfully!");
+      } else {
+        alert("Failed to delete product.");
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
-
   return (
     <>
       <AdmineNavbar />

@@ -2,34 +2,35 @@
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
+  const salePrice =
+    product.db_price - product.db_price * (product.db_discount / 100);
+  console.log(salePrice);
+
   return (
     <div className="product-card">
       <div className="image-container">
-        <Link to="/Products">
+        <Link to={`/Products?productName=${product.db_prod_name}`}>
           <img
-            src={product.image}
-            alt={product.name}
+            src={`src/assets/productPage/${product.db_prod_main_image}`}
+            alt={product.db_prod_name}
             className="product-image"
           />
         </Link>
       </div>
       <div className="product-info">
-        <span className="category">{product.clothesCategories}</span>
-        <h3 className="name">{product.name}</h3>
+        <span className="category">{product.db_category}</span>
+        <h3 className="name">{product.db_prod_name}</h3>
         <p className="price">
-          {product.salePrice ? (
+          {product.db_discount ? (
             <>
-              <span className="original-price">${product.originalPrice}</span>
-              <span className="sale-price">${product.salePrice}</span>
+              <span className="original-price">${product.db_price}</span>
+              <span className="sale-price">${salePrice}</span>
             </>
           ) : (
-            `$${product.price}`
+            `$${product.db_price}`
           )}
         </p>
-        <p className="about">{product.about}</p>
-        <button className="actions">
-          <p className="wishlist">♥</p>
-        </button>
+        <p className="about">{product.db_prod_detail}</p>
       </div>
     </div>
   );
