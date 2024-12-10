@@ -106,13 +106,7 @@ const ProductPage = () => {
       });
   };
 
-  console.log(currentProduct.price);
-
-  console.log(currentProduct.discount);
-
   let sale = currentProduct.db_price;
-
-  console.log(sale);
 
   return (
     <div className="product-page">

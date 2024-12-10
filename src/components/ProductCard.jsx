@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 export default function ProductCard({ product }) {
   const salePrice =
     product.db_price - product.db_price * (product.db_discount / 100);
-  console.log(salePrice);
 
   return (
     <div className="product-card">

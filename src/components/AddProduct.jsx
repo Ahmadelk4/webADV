@@ -56,7 +56,7 @@ export default function ProdCreate({ isModal }) {
           },
         }
       );
-      console.log("Response:", response.data);
+
       alert("Product added successfully!");
     } catch (error) {
       console.error("Error:", error);
