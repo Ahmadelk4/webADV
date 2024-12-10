@@ -20,11 +20,6 @@ const ProductList = () => {
       });
   }, []);
 
-  // const handleDelete = (id) => {
-  //   const updatedProducts = products.filter((product) => product.db_id !== id);
-  //   setProducts(updatedProducts);
-  // };
-
   const handleDelete = async (id) => {
     try {
       const response = await axios.post(

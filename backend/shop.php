@@ -7,7 +7,6 @@ header('Content-Type: application/json');
 
 include('db_connection.php');
 
-// Modify the query to get one unique product per name
 $sql = "SELECT 
             db_id, 
             db_prod_name, 
@@ -17,7 +16,7 @@ $sql = "SELECT
             db_price, 
             db_discount
         FROM Products
-        GROUP BY db_prod_name"; // Ensures only one record per product name is returned
+        GROUP BY db_prod_name";
 
 try {
   $stmt = $con->prepare($sql);

@@ -22,7 +22,7 @@ export default function ProdCreate({ isModal }) {
   });
 
   const handleCloseModal = () => {
-    navigate(-1); // Closes the modal and navigates back
+    navigate(-1);
   };
 
   const handleInputChange = (e) => {
@@ -38,7 +38,7 @@ export default function ProdCreate({ isModal }) {
     if (files && files[0]) {
       setFormData((prev) => ({
         ...prev,
-        [name]: files[0].name, // Save the file name to formData
+        [name]: files[0].name,
       }));
     }
   };
@@ -48,7 +48,7 @@ export default function ProdCreate({ isModal }) {
 
     try {
       const response = await axios.post(
-        "http://localhost//webadv/backend/setProducts.php", // Replace with your PHP endpoint
+        "http://localhost//webadv/backend/setProducts.php",
         formData,
         {
           headers: {

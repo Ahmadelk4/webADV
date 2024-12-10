@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $productId = $input['productId'];
   $fields = array_filter($input, fn($key) => $key !== 'productId', ARRAY_FILTER_USE_KEY);
 
-  // Example: Build update query
   $updates = [];
   foreach ($fields as $field => $value) {
     $updates[] = "`$field` = '" . addslashes($value) . "'";
@@ -29,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $query = "UPDATE products SET " . implode(", ", $updates) . " WHERE id = " . intval($productId);
 
-  // TODO: Add database connection and execute the query here
 
   echo json_encode(["success" => true, "message" => "Product updated successfully"]);
   http_response_code(200);

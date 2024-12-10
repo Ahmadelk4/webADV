@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 
 include('db_connection.php');
 
-// Modify the query to get one unique product per name
+
 $sql = "SELECT 
             db_id, 
             db_prod_name, 
@@ -19,7 +19,7 @@ $sql = "SELECT
         FROM Products
         GROUP BY db_prod_name 
        ORDER BY db_created_at DESC
-        "; // Ensures only one record per product name is returned
+        ";
 
 try {
   $stmt = $con->prepare($sql);

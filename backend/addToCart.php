@@ -1,22 +1,22 @@
 <?php
 
-header("Access-Control-Allow-Origin: http://localhost:5174"); // Allow your frontend origin
-header("Access-Control-Allow-Methods: POST, OPTIONS"); // Allow POST requests
-header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Allow specific headers
-header("Access-Control-Allow-Credentials: true"); // Allow cookies if needed
+header("Access-Control-Allow-Origin: http://localhost:5174");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Credentials: true");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-  // Respond to preflight request
+
   http_response_code(200);
   exit();
 }
 
-require_once "db_connection.php"; // Include the DB connection file
+require_once "db_connection.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($data) {
-  // Extract the product details from the JSON data
+
   $db_prod_name = $data['db_prod_name'];
   $db_size = $data['db_size'];
   $db_amount = $data['db_amount'];
@@ -25,7 +25,7 @@ if ($data) {
   $db_price = $data['db_price'];
 
   try {
-    // Prepare and execute the insert query
+
     $stmt = $con->prepare(
       "INSERT INTO cart (db_prod_name, db_size, db_amount, db_prod_main_image, db_color, db_price) 
        VALUES (:db_prod_name, :db_size, :db_amount, :db_prod_main_image, :db_color, :db_price)"
