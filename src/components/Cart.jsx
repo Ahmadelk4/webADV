@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../CSS/Cart.css";
 import { useNavigate } from "react-router-dom";
 import Close from "../assets/Close.svg";
+import axios from "axios";
 
 const Cart = ({ isModal }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -45,6 +46,23 @@ const Cart = ({ isModal }) => {
     0
   );
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.post(
+        "http://localhost/webadv/backend/deleteFromCart.php",
+        { id }
+      );
+      if (response.data.success) {
+        setCartItems(cartItems.filter((product) => product.db_id !== id)); // Update the UI
+        alert("Product deleted successfully!");
+      } else {
+        alert("Failed to delete product. ".id);
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
   return (
     <div className={`cart-modal ${isModal ? "modal-open" : ""}`}>
       <div className="modal-overlay" onClick={handleCloseModal}></div>
@@ -62,6 +80,7 @@ const Cart = ({ isModal }) => {
                 <p>{item.name}</p>
                 <p>COLOR: {item.color}</p>
                 <p>SIZE: {item.size}</p>
+
                 <div className="quantity">
                   <input
                     type="number"
@@ -78,7 +97,7 @@ const Cart = ({ isModal }) => {
             <p className="Totalprice"> {item.price * item.quantity} USD</p>
             <button
               className="remove-button"
-              onClick={() => handleRemoveItem(item.id)}
+              onClick={() => handleDelete(item.id)}
             >
               <img src={Close} alt="close symbol" />
             </button>

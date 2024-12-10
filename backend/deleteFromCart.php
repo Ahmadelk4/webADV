@@ -12,11 +12,11 @@ include('db_connection.php');
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['id'])) {
-
+  $id = $data['id'];
 
   try {
 
-    $sql = "DELETE FROM Products WHERE db_id = :id";
+    $sql = "DELETE FROM cart WHERE db_id = :id";
     $stmt = $con->prepare($sql);
 
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['id'])) {
     if ($stmt->execute()) {
       echo json_encode(['success' => true, 'message' => 'Product deleted successfully']);
     } else {
-      echo json_encode(['success' => false, 'message' => 'Failed to delete product ']);
+      echo json_encode(['success' => false, 'message' => 'Failed to delete product']);
     }
   } catch (PDOException $e) {
     echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);

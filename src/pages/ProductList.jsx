@@ -30,7 +30,7 @@ const ProductList = () => {
         setProducts(products.filter((product) => product.db_id !== id)); // Update the UI
         alert("Product deleted successfully!");
       } else {
-        alert("Failed to delete product.");
+        alert("Failed to delete product. ");
       }
     } catch (error) {
       console.error("Error deleting product:", error);
