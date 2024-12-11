@@ -1,3 +1,7 @@
+.scrollable-element::-webkit-scrollbar {
+  display: none;
+}
+
 .signin_up-modal {
   position: fixed;
   top: 0;

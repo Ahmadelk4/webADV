@@ -1,6 +1,10 @@
 $blue: #204768;
 $orange: #f9946a;
 
+.scrollable-element::-webkit-scrollbar {
+  display: none;
+}
+
 .signin_up-modal {
   position: fixed;
   top: 0;

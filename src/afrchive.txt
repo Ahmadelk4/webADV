@@ -4,6 +4,7 @@
 CREATE TABLE Users(
     db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     db_username VARCHAR(30) NOT NULL,
+    db_usertype VARCHAR(30) NOT NULL,
     db_phone INT(11) NOT NULL,
     PWD VARCHAR(255) NOT NULL,
     db_email VARCHAR(100) NOT NULL
