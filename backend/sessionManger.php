@@ -18,15 +18,15 @@ function checkSession()
   global $session_lifetime;
   if (isset($_SESSION['expiry_time']) && time() > $_SESSION['expiry_time']) {
     endSession();
-    http_response_code(401); // Set the HTTP response to Unauthorized.
-    echo json_encode(["message" => "Session expired"]); // Send a JSON response.
+    http_response_code(401);
+    echo json_encode(["message" => "Session expired"]);
     exit();
   } elseif (isset($_SESSION['username'])) {
-    // Extend session expiry time.
+
     $_SESSION['expiry_time'] = time() + $session_lifetime;
-    return true; // Session is active.
+    return true;
   } else {
-    http_response_code(401); // Set the HTTP response to Unauthorized.
+    http_response_code(401);
     echo json_encode(["message" => "Not logged in"]);
     exit();
   }
