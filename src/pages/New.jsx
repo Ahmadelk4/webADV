@@ -10,7 +10,7 @@ export default function ShopPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost//webadv/backend/New.php")
+      .get("http://localhost/webadv/webADV/backend/New.php")
       .then((response) => {
         setProducts(response.data);
       })

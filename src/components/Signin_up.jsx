@@ -34,7 +34,7 @@ export default function Signin_up({ isModal }) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost//webadv/backend/signup.php",
+        "http://localhost/webadv/webADV/backend/signup.php",
         formData
       );
       alert(response.data.message);
@@ -51,11 +51,12 @@ export default function Signin_up({ isModal }) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost//webadv/backend/login.php",
+        "http://localhost/webadv/webADV/backend/login.php",
         {
           email: formData.email,
           password: formData.password,
-        }
+        },
+        { withCredentials: true }
       );
 
       if (response.data.success && response.data.userType == "admin") {

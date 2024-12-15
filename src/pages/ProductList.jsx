@@ -11,7 +11,7 @@ const ProductList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost//webadv/backend/getProducts.php")
+      .get("http://localhost/webadv/webADV/backend/getProducts.php")
       .then((response) => {
         setProducts(response.data);
       })
@@ -23,7 +23,7 @@ const ProductList = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost/webadv/backend/deleteProduct.php",
+        "http://localhostwebadv/webADV/backend/deleteProduct.php",
         { id }
       );
       if (response.data.success) {

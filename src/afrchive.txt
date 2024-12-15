@@ -65,11 +65,11 @@ CREATE TABLE orders(
 ************************************************************************************************************
 
 
-http://localhost//webadv/backend/getProducts.php
+http://localhost/webadv/webADV/backend/getProducts.php
 
-http://localhost//webadv/backend/setProducts.php
+http://localhost/webadv/webADV/backend/setProducts.php
 
-http://localhost//webadv/backend/updateProduct.php
+http://localhost/webadv/webADV/backend/updateProduct.php
 
 
 ************************************************************************************************************

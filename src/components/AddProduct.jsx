@@ -48,7 +48,7 @@ export default function ProdCreate({ isModal }) {
 
     try {
       const response = await axios.post(
-        "http://localhost//webadv/backend/setProducts.php",
+        "http://localhost/webadv/webADV/backend/setProducts.php",
         formData,
         {
           headers: {

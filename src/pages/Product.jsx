@@ -18,7 +18,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost//webadv/backend/productPage.php?productName=${encodeURIComponent(
+      `http://localhost/webadv/webADV/backend/productPage.php?productName=${encodeURIComponent(
         productName
       )}`
     )
@@ -86,7 +86,7 @@ const ProductPage = () => {
       db_price: currentProduct.price,
     };
 
-    fetch("http://localhost//webadv/backend/addToCart.php", {
+    fetch("http://localhost/webadv/webADV/backend/addToCart.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

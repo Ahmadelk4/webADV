@@ -12,7 +12,7 @@ const Cart = ({ isModal }) => {
     const fetchCartData = async () => {
       try {
         const response = await fetch(
-          "http://localhost//webadv/backend/fetchCart.php"
+          "http://localhost/webadv/webADV/backend/fetchCart.php"
         );
         const data = await response.json();
         setCartItems(data);
@@ -49,7 +49,7 @@ const Cart = ({ isModal }) => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost/webadv/backend/deleteFromCart.php",
+        "http://localhostwebadv/webADV/backend/deleteFromCart.php",
         { id }
       );
       if (response.data.success) {
