@@ -7,6 +7,7 @@ import Delete from "../assets/Delete.svg";
 const deliveryInfo = [
   {
     Product_id: 0,
+    amount: 3,
     image: T_shirt,
     name: "Shirt",
     about: "",
@@ -21,6 +22,7 @@ const deliveryInfo = [
   },
   {
     Product_id: 1,
+    amount: 3,
     image: T_shirt,
     name: "Shirt",
     about: "",
@@ -35,6 +37,7 @@ const deliveryInfo = [
   },
   {
     Product_id: 2,
+    amount: 3,
     image: T_shirt,
     name: "Shirt",
     about: "",
@@ -69,8 +72,9 @@ const ProductList = () => {
 
         <div className="product-container">
           <div className="product-headers">
-            <span className="item">Item</span>
             <span>ID</span>
+            <span className="item">Item</span>
+            <span>amount</span>
             <span>Username</span>
             <span>Email</span>
             <span>Phone</span>
@@ -82,6 +86,9 @@ const ProductList = () => {
 
           {products.map((product) => (
             <div key={product.Product_id} className="product-row">
+              <span>
+                <span className="type">ID</span> {product.Product_id}
+              </span>
               <div className="product-item">
                 <span className="type">Item</span>
                 <img src={product.image} alt={product.name} />
@@ -91,7 +98,7 @@ const ProductList = () => {
                 </div>
               </div>
               <span>
-                <span className="type">ID</span> {product.Product_id}
+                <span className="type">amount</span> {product.amount}
               </span>
               <span>
                 <span className="type">Username</span> {product.Username}

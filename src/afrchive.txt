@@ -1,7 +1,7 @@
 ************************************************************************************************************
 
 
-CREATE TABLE Users(
+CREATE TABLE users(
     db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     db_username VARCHAR(30) NOT NULL,
     db_usertype VARCHAR(30) NOT NULL,
@@ -53,14 +53,27 @@ CREATE TABLE Cart(
 
 CREATE TABLE orders(
     db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    db_deli_status VARCHAR(30) NOT NULL,
     db_deli_address VARCHAR(255),
     db_amount INT(11) NOT NULL ,
     db_product_id INT(11) NOT NULL,
     db_user_id INT(11) NOT NULL,
+    db_info_id INT(11) NOT NULL,
     FOREIGN KEY(db_product_id) REFERENCES products(db_id) ON DELETE CASCADE,
+    FOREIGN KEY(db_info_id) REFERENCES info(db_id) ON DELETE CASCADE,
+    FOREIGN KEY(db_user_id) REFERENCES users(db_id) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE info(
+    db_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    db_email VARCHAR(255),
+    db_address VARCHAR(255),
+    db_phone INT(11) NOT NULL ,
+    db_user_id INT(11) NOT NULL,
     FOREIGN KEY(db_user_id) REFERENCES products(db_id) ON DELETE CASCADE
 );
+
 
 ************************************************************************************************************
 

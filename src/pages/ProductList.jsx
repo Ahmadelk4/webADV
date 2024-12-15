@@ -46,8 +46,8 @@ const ProductList = () => {
 
         <div className="product-container">
           <div className="product-headers">
-            <span className="item">Item</span>
             <span>ID</span>
+            <span className="item">Item</span>
             <span>Category</span>
             <span>Size</span>
             <span>Color</span>
@@ -58,6 +58,9 @@ const ProductList = () => {
 
           {products.map((product) => (
             <div key={product.db_id} className="product-row">
+              <span>
+                <span className="type">ID</span> {product.db_id}
+              </span>
               <div className="product-item">
                 <span className="type">Item</span>
                 <img
@@ -71,9 +74,7 @@ const ProductList = () => {
                   </p>
                 </div>
               </div>
-              <span>
-                <span className="type">ID</span> {product.db_id}
-              </span>
+
               <span>
                 <span className="type">Category</span> {product.db_category}
               </span>

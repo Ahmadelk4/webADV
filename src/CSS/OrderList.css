@@ -23,7 +23,7 @@
   font-size: 1.4rem;
   font-weight: bold;
   display: grid;
-  grid-template-columns: 1.53fr 0.3fr 0.73fr 1.1fr 0.65fr 0.29fr 0.5fr 0.7fr 1.09fr 0.46fr;
+  grid-template-columns: 0.25fr 1.43fr 0.3fr 0.73fr 1.1fr 0.65fr 0.29fr 0.5fr 0.7fr 1.09fr 0.46fr;
   color: #555;
   border-bottom: 2px solid #ddd;
   padding: 10px 0;
@@ -34,7 +34,7 @@
 .Order-list .product-container .product-row {
   font-size: 1rem;
   display: grid;
-  grid-template-columns: 1.7fr 0.3fr 0.8fr 1.3fr 0.7fr 0.29fr 0.6fr 0.8fr 1.2fr 0.1fr;
+  grid-template-columns: 0.25fr 1.6fr 0.4fr 0.8fr 1.3fr 0.7fr 0.29fr 0.6fr 0.8fr 1.2fr 0.1fr;
   align-items: center;
   border-bottom: 1px solid #ddd;
   padding: 10px 0;

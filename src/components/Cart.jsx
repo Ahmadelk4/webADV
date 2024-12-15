@@ -49,17 +49,36 @@ const Cart = ({ isModal }) => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhostwebadv/webADV/backend/deleteFromCart.php",
+        "http://localhost/webadv/webADV/backend/deleteFromCart.php",
         { id }
       );
       if (response.data.success) {
-        setCartItems(cartItems.filter((product) => product.db_id !== id)); // Update the UI
+        setCartItems(cartItems.filter((product) => product.db_id !== id));
         alert("Product deleted successfully!");
       } else {
-        alert("Failed to delete product. ".id);
+        alert("Failed to delete product.");
       }
     } catch (error) {
       console.error("Error deleting product:", error);
+    }
+  };
+
+  const handleCheckout = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost/webadv/webADV/backend/checkout.php",
+        { cartItems }
+      );
+      if (response.data.success) {
+        alert("Order placed successfully!");
+        setCartItems([]); // Clear cart on successful checkout
+        navigate("/order-confirmation");
+      } else {
+        alert("Failed to place order. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("An error occurred while placing your order.");
     }
   };
 
@@ -113,7 +132,9 @@ const Cart = ({ isModal }) => {
           <button className="btn" onClick={handleCloseModal}>
             &lt; Continue Shopping
           </button>
-          <button className="btn"> Checkout &gt; </button>
+          <button className="btn" onClick={handleCheckout}>
+            Checkout &gt;
+          </button>
         </div>
       </div>
     </div>
